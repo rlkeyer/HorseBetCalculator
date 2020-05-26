@@ -1,0 +1,56 @@
+.container {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 100rem;
+    margin: 4rem auto;
+}
+
+.select-options {
+    border: 1px solid black;
+}
+
+.select {
+    padding: 20px;
+    border: none;
+    background: white;
+    font-size: 1.3rem;
+    font-family: serif;
+}
+
+.select:focus {
+    outline: none;
+}
+
+.checkbox {
+    padding: 20px;
+    font-size: 1.3rem;
+    font-family: serif;
+}
+
+#box {
+    margin: 0 0.5rem 0 0;
+}
+
+p {
+    margin: 0;
+    padding: 10px;
+}
+
+.number-tiles {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 100rem;
+}
+
+.square-number {
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    min-width: 3rem;
+    cursor: pointer;
+}
+
+.square-number.is-selected {
+    box-shadow: 0 0 0.2rem blue;
+}
