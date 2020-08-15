@@ -1,6 +1,7 @@
 import "./Calculator.css";
 import React, { useState, useEffect } from "react";
 import { NumberTiles } from './NumberTiles'
+import Select from 'react-select'
 
 
 // const HorseRow = (number) => {
@@ -44,12 +45,39 @@ export const Calculator = () => {
     }
 
       return (
-        <>
+        <div className="places">
           {items.map((item) => (
-            <NumberTiles entries={entries} place={item} selectedNumbers={selectedNumbers} setSelectedNumbers={setSelectedNumbers} />
+            <div className="place-container">
+              <div>{placeLabelCalc(item)}</div>
+              <NumberTiles entries={entries} place={item} selectedNumbers={selectedNumbers} setSelectedNumbers={setSelectedNumbers} />
+            </div>
           ))}
-        </>
+        </div>
       )
+  }
+
+  const placeLabelCalc = (number) => {
+    const singleRace = ['Exacta', 'Trifecta', 'Superfecta']
+    if (isBox) {
+      return 'All Places'
+    } else {
+      switch (number) {
+        case 1:
+          return singleRace.includes(selectedType) ? '1st Place' : '1st Race'
+        case 2:
+          return singleRace.includes(selectedType) ? '2nd Place' : '2nd Race'
+        case 3:
+          return singleRace.includes(selectedType) ? '3rd Place' : '3rd Race'
+        case 4:
+          return singleRace.includes(selectedType) ? '4th Place' : '4th Race'
+        case 5:
+          return singleRace.includes(selectedType) ? '5th Place' : '5th Race'
+        case 6:
+          return singleRace.includes(selectedType) ? '6th Place' : '6th Race'
+        default:
+          return null
+      }
+    }
   }
 
   const exactaCalc = (numbers) => {
@@ -65,33 +93,45 @@ export const Calculator = () => {
   };
 
   const calculateBetCost = () => {
-    let length = 1;
     let multiplier = 1;
     const first = selectedNumbers[1]
     const second = selectedNumbers[2]
     const third = selectedNumbers[3]
     const fourth = selectedNumbers[4]
-    if (isBox) length = first?.length || 0
-    if (selectedType === "Exacta" && isBox) {
-      multiplier = length * (length - 1);
-    } else if (selectedType === "Trifecta" && isBox) {
-      multiplier = length * (length - 1) * (length - 2);
-    }
-      else if (selectedType === 'Exacta' && first && second) {
-        console.log(intersection(first, second))
-        multiplier = product([first, second]).length
-      } else if (selectedType === 'Trifecta' && first && second && third) {
-        multiplier = product([first, second, third]).length
-      } else if (selectedType === 'Superfecta' && first && second && third && fourth) {
-        multiplier = product([first, second, third, fourth]).length
-        console.log(multiplier)
-      } else if (selectedType === 'Superfecta' && isBox && first) {
-        multiplier = product([first, first, first, first]).length
-      } else {
+    const fifth = selectedNumbers[5]
+    const sixth = selectedNumbers[6]
+    if (selectedType === "Exacta" && isBox && first) {
+      multiplier = product([first, first]).length
+    } else if (selectedType === 'Exacta' && first && second) {
+      console.log(intersection(first, second))
+      multiplier = product([first, second]).length
+    } else if (selectedType === 'Trifecta' && first && second && third) {
+      multiplier = product([first, second, third]).length
+    } else if (selectedType === 'Trifecta' && isBox && first) {
+      multiplier = product([first, first, first]).length
+    } else if (selectedType === 'Superfecta' && first && second && third && fourth) {
+      multiplier = product([first, second, third, fourth]).length
+    } else if (selectedType === 'Superfecta' && isBox && first) {
+      multiplier = product([first, first, first, first]).length
+    } else if (selectedType === 'P3' && first && second && third) {
+      multiplier = product([first, second, third], true).length
+    } else if (selectedType === 'P4' && first && second && third && fourth) {
+      multiplier = product([first, second, third, fourth], true).length
+    } else if (selectedType === 'P5' && first && second && third && fourth && fifth) {
+      multiplier = product([first, second, third, fourth, fifth], true).length
+    } else if (selectedType === 'P6' && first && second && third && fourth && fifth && sixth) {
+      multiplier = product([first, second, third, fourth, fifth, sixth], true).length
+    } else {
       multiplier = 1;
     }
-    return selectedAmount * multiplier;
+    return formatter.format(selectedAmount * multiplier);
   };
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  })
 
 function product(array, repeat) {
   return array.reduce(function tl (accumulator, value) {
@@ -121,13 +161,44 @@ function product(array, repeat) {
     }
   }
 
-  // Trifecta combinations = (A x B x C) – (AB x C) – (AC x B) – (BC x A) + (2 x ABC)
+  const amountOptions = [
+    { value: 0.1, label: '$0.10' },
+    { value: 0.2, label: '$0.20' },
+    { value: 0.5, label: '$0.50' },
+    { value: 1, label: '$1' },
+    { value: 2, label: '$2' },
+    { value: 5, label: '$5' },
+    { value: 10, label: '$10' },
+    { value: 15, label: '$15' },
+    { value: 20, label: '$20' },
+    { value: 50, label: '$50' },
+    { value: 100, label: '$100' },
+  ]
+
+  const betOptions = [
+    { value: 'Exacta', label: 'Exacta' },
+    { value: 'Trifecta', label: 'Trifecta' },
+    { value: 'Superfecta', label: 'Superfecta' },
+    { value: 'DailyDouble', label: 'Daily Double' },
+    { value: 'P3', label: 'Pick 3' },
+    { value: 'P4', label: 'Pick 4' },
+    { value: 'P5', label: 'Pick 5' },
+    { value: 'P6', label: 'Pick 6' },
+  ]
+
+  const handleAmountChange = (value) => {
+    setSelectedAmount(value.value)
+  }
+
+  const handleTypeChange = (value) => {
+    setSelectedType(value.value)
+  }
 
   return (
     <div>
       <div className="container">
-        <div className="select-options">
-          <select
+        {/* <div> */}
+          {/* <select
             id="bet-amount"
             className="select"
             onChange={(e) => setSelectedAmount(e.target.value)}
@@ -146,9 +217,10 @@ function product(array, repeat) {
             <option value={20}>$20</option>
             <option value={50}>$50</option>
             <option value={100}>$100</option>
-          </select>
-        </div>
-        <div className="select-options">
+          </select> */}
+          <Select options={amountOptions} className="select" placeholder="Bet Amount" onChange={handleAmountChange}/>
+        {/* </div> */}
+        {/* <div className="select-options">
           <select
             id="bet-type"
             className="select"
@@ -166,7 +238,8 @@ function product(array, repeat) {
             <option value="P5">Pick 5</option>
             <option value="P6">Pick 6</option>
           </select>
-        </div>
+        </div> */}
+        <Select options={betOptions} className="select" placeholder="Bet Type" onChange={handleTypeChange}/>
         <div className="checkbox">
           <input
             type="checkbox"

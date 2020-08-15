@@ -7,15 +7,11 @@
 }
 
 .select-options {
-    border: 1px solid black;
+    border: 1px solid #2F99B0;
 }
 
 .select {
-    padding: 20px;
-    border: none;
-    background: white;
-    font-size: 1.3rem;
-    font-family: serif;
+    width: 10rem;
 }
 
 .select:focus {
@@ -23,7 +19,9 @@
 }
 
 .checkbox {
-    padding: 20px;
+    width: 10rem;
+    display: flex;
+    align-items: center;
     font-size: 1.3rem;
     font-family: serif;
 }
@@ -41,16 +39,30 @@ p {
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
-    max-width: 100rem;
+    width: 50rem;
 }
 
 .square-number {
-    border: 1px solid black;
+    border: 3px solid #2F99B0;
     border-radius: 0.2rem;
     min-width: 3rem;
     cursor: pointer;
 }
 
 .square-number.is-selected {
-    box-shadow: 0 0 0.2rem blue;
+    /* box-shadow: 0 0 0.2rem blue; */
+    background-color: #B1D9E1;
+}
+
+.places {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.place-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
 }
