@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/HorseBetCalculator/static/css/main.9e0185c6.chunk.css",
-    "main.js": "/HorseBetCalculator/static/js/main.7ec527dc.chunk.js",
-    "main.js.map": "/HorseBetCalculator/static/js/main.7ec527dc.chunk.js.map",
+    "main.js": "/HorseBetCalculator/static/js/main.a864e029.chunk.js",
+    "main.js.map": "/HorseBetCalculator/static/js/main.a864e029.chunk.js.map",
     "runtime-main.js": "/HorseBetCalculator/static/js/runtime-main.b75726dd.js",
     "runtime-main.js.map": "/HorseBetCalculator/static/js/runtime-main.b75726dd.js.map",
     "static/js/2.bd6fe254.chunk.js": "/HorseBetCalculator/static/js/2.bd6fe254.chunk.js",
     "static/js/2.bd6fe254.chunk.js.map": "/HorseBetCalculator/static/js/2.bd6fe254.chunk.js.map",
     "index.html": "/HorseBetCalculator/index.html",
-    "precache-manifest.8bf1cd0398fb39589b27392e3700f846.js": "/HorseBetCalculator/precache-manifest.8bf1cd0398fb39589b27392e3700f846.js",
+    "precache-manifest.8fe58bec121d2f9d8ad381db5707a7a0.js": "/HorseBetCalculator/precache-manifest.8fe58bec121d2f9d8ad381db5707a7a0.js",
     "service-worker.js": "/HorseBetCalculator/service-worker.js",
     "static/css/main.9e0185c6.chunk.css.map": "/HorseBetCalculator/static/css/main.9e0185c6.chunk.css.map",
     "static/js/2.bd6fe254.chunk.js.LICENSE.txt": "/HorseBetCalculator/static/js/2.bd6fe254.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b75726dd.js",
     "static/js/2.bd6fe254.chunk.js",
     "static/css/main.9e0185c6.chunk.css",
-    "static/js/main.7ec527dc.chunk.js"
+    "static/js/main.a864e029.chunk.js"
   ]
 }
