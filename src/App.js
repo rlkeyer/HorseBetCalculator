@@ -1,17 +1,15 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { Calculator } from './components/Calculator'
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <div className="App">
+        <div className="HELLO">
+       {/* <Switch> */}
           <Route exact path="/" component={Calculator} />
+       {/* </Switch> */}
         </div>
-      </Switch>
-    </Router>
   );
 }
 
