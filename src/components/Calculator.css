@@ -4,6 +4,7 @@
     justify-content: space-evenly;
     max-width: 100rem;
     margin: 4rem auto;
+    flex-wrap: wrap;
 }
 
 .select-options {
@@ -24,6 +25,7 @@
     align-items: center;
     font-size: 1.3rem;
     font-family: serif;
+    justify-content: center;
 }
 
 #box {
@@ -65,4 +67,28 @@ p {
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .places {
+        flex-direction: row;
+    }
+
+    .place-container {
+        flex-direction: column;
+    }
+
+    .number-tiles {
+        flex-direction: column;
+        width: unset;
+        margin: 0.3rem 0.5rem 2rem 0.5rem;
+    }
+
+    .select {
+        width: 8rem;
+    }
+
+    .square-number {
+        margin-bottom: 0.3rem;
+    }
 }

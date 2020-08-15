@@ -195,7 +195,7 @@ function product(array, repeat) {
   }
 
   return (
-    <div>
+    <>
       <div className="container">
         {/* <div> */}
           {/* <select
@@ -257,6 +257,6 @@ function product(array, repeat) {
       <div className="cost-display">
         <span>{`Bet Cost: ${calculateBetCost()}`}</span>
       </div>
-    </div>
+    </>
   );
 };
