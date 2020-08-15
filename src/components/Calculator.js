@@ -69,7 +69,9 @@ export const Calculator = () => {
     let multiplier = 1;
     const first = selectedNumbers[1]
     const second = selectedNumbers[2]
-    if (isBox) length = first.length || 0
+    const third = selectedNumbers[3]
+    const fourth = selectedNumbers[4]
+    if (isBox) length = first?.length || 0
     if (selectedType === "Exacta" && isBox) {
       multiplier = length * (length - 1);
     } else if (selectedType === "Trifecta" && isBox) {
@@ -77,21 +79,45 @@ export const Calculator = () => {
     }
       else if (selectedType === 'Exacta' && first && second) {
         console.log(intersection(first, second))
-        multiplier = (first.length * second.length)
+        multiplier = product([first, second]).length
+      } else if (selectedType === 'Trifecta' && first && second && third) {
+        multiplier = product([first, second, third]).length
+      } else if (selectedType === 'Superfecta' && first && second && third && fourth) {
+        multiplier = product([first, second, third, fourth]).length
+        console.log(multiplier)
+      } else if (selectedType === 'Superfecta' && isBox && first) {
+        multiplier = product([first, first, first, first]).length
       } else {
       multiplier = 1;
     }
     return selectedAmount * multiplier;
   };
 
+function product(array, repeat) {
+  return array.reduce(function tl (accumulator, value) {
+    var tmp = [];
+    accumulator.forEach(function (a0) {
+      value.forEach(function (a1) {
+        if (repeat === true) {
+          tmp.push(a0.concat(a1));
+        } else {
+          if (!a0.includes(a1)) tmp.push(a0.concat(a1));
+        }
+      });
+    });
+    return tmp;
+  }, [[]]);
+}
+
   const intersection = (first, second, third, fourth) => {
     if (!first || !second) return
     if (!third && !fourth) {
-      return first.filter(horse => second.includes(horse))
+      return first.filter(horse => second.includes(horse)).length
     } else if (!fourth) {
-      console.lof('not ready')
+      console.log(first.filter(horse => second.includes(horse)).filter(horse => third.includes(horse)))
+      return first.filter(horse => second.includes(horse)).filter(horse => third.includes(horse)).length
     } else {
-      console.lof('not ready')
+      console.log('not ready')
     }
   }
 
