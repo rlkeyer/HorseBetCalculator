@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ebf88862379793c08a24161b576d884c",
+    "revision": "34987e5c1075eb7bc296bee389bf9350",
     "url": "/HorseBetCalculator/index.html"
   },
   {
-    "revision": "35ee675ed11c0a08db52",
+    "revision": "f6c2c50cd812833aaec3",
     "url": "/HorseBetCalculator/static/css/main.9e0185c6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HorseBetCalculator/static/js/2.bd6fe254.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "35ee675ed11c0a08db52",
-    "url": "/HorseBetCalculator/static/js/main.84b048c7.chunk.js"
+    "revision": "f6c2c50cd812833aaec3",
+    "url": "/HorseBetCalculator/static/js/main.c0f94a5c.chunk.js"
   },
   {
     "revision": "819e507fc03aab05fd62",
