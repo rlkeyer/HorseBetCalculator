@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/HorseBetCalculator/precache-manifest.f35177cb25c3d395f5c07733e17e06cc.js"
+  "/HorseBetCalculator/precache-manifest.030e7939d38a3d4adff9960a534f64ca.js"
 );
 
 self.addEventListener('message', (event) => {
