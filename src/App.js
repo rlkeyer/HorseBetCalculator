@@ -6,9 +6,9 @@ import { Calculator } from './components/Calculator'
 function App() {
   return (
     <Switch>
-      <div className="App">
+      {/* <div className="App"> */}
         <Route exact path="/" component={Calculator} />
-      </div>
+      {/* </div> */}
     </Switch>
   );
 }
