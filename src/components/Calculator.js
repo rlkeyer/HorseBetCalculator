@@ -48,7 +48,7 @@ export const Calculator = () => {
         <div className="places">
           {items.map((item) => (
             <div className="place-container">
-              <div>{placeLabelCalc(item)}</div>
+              <div style={{width: '5rem'}}>{placeLabelCalc(item)}</div>
               <NumberTiles entries={entries} place={item} selectedNumbers={selectedNumbers} setSelectedNumbers={setSelectedNumbers} />
             </div>
           ))}
