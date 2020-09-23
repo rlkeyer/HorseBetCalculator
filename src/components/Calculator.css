@@ -43,7 +43,7 @@ p {
   padding: 10px;
   font-weight: bold;
   position: relative;
-  transition: color 0.5s;
+  transition: color 0.4s;
 }
 
 .number-tiles {
@@ -138,5 +138,5 @@ p {
   height: 0;
   border-right: 1rem solid transparent;
   position: absolute;
-  transition: border-right 0.5s cubic-bezier(0.5, -0.5, 0.5, 1.5), border-top 0.5s cubic-bezier(0.5, -0.5, 0.5, 1.5);
+  transition: border-right 0.4s cubic-bezier(0.5, -0.5, 0.5, 1.5), border-top 0.4s cubic-bezier(0.5, -0.5, 0.5, 1.5);
 }
