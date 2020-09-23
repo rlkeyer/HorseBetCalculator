@@ -1,3 +1,7 @@
+This project is a work in progress.  Currently the user has the ability to select a bet amount, bet type, and number of runners.  They can view the cost of placing the bet.  More styling and bet types will be added shortly including Super Hi5.
+
+Currently deployed at: https://horse-bet-calculator.vercel.app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
