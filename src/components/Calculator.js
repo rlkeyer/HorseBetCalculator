@@ -20,21 +20,21 @@ export const Calculator = () => {
   const [selectedNumbers, setSelectedNumbers] = useState({});
   const [selectedAmount, setSelectedAmount] = useState("");
   const [selectedType, setSelectedType] = useState("");
-  const [entries, setEntries] = useState(12);
+  const [entries, setEntries] = useState(null);
   const [isBox, setIsBox] = useState(false);
 
-  const numberOfPlaces = (entries) => {
-    const betTypes = {
-      Exacta: 2,
-      Trifecta: 3,
-      Superfecta: 4,
-      DailyDouble: 2,
-      P3: 3,
-      P4: 4,
-      P5: 5,
-      P6: 6,
-    }
+  const betTypes = {
+    Exacta: 2,
+    Trifecta: 3,
+    Superfecta: 4,
+    DailyDouble: 2,
+    P3: 3,
+    P4: 4,
+    P5: 5,
+    P6: 6,
+  }
 
+  const numberOfPlaces = (entries) => {
     const places = isBox ? 1 : betTypes[selectedType]
 
     let items = [];
@@ -44,7 +44,7 @@ export const Calculator = () => {
       items.push(i);
     }
 
-      return (
+      if (entries) return (
         <div className="places">
           {items.map((item) => (
             <div className="place-container">
@@ -56,8 +56,9 @@ export const Calculator = () => {
       )
   }
 
+  const singleRace = ['Exacta', 'Trifecta', 'Superfecta']
+
   const placeLabelCalc = (number) => {
-    const singleRace = ['Exacta', 'Trifecta', 'Superfecta']
     if (isBox) {
       return 'All Places'
     } else {
@@ -80,18 +81,6 @@ export const Calculator = () => {
     }
   }
 
-  const exactaCalc = (numbers) => {
-    const length = numbers.length;
-    if (!isBox && length === 2) {
-      return selectedAmount;
-    } else {
-      const multiplier = length * (length - 1);
-      console.log("amount   -->  ", selectedAmount);
-      console.log("multiplier   -->  ", multiplier);
-      return selectedAmount * multiplier;
-    }
-  };
-
   const calculateBetCost = () => {
     let multiplier = 1;
     const first = selectedNumbers[1]
@@ -103,7 +92,6 @@ export const Calculator = () => {
     if (selectedType === "Exacta" && isBox && first) {
       multiplier = product([first, first]).length
     } else if (selectedType === 'Exacta' && first && second) {
-      console.log(intersection(first, second))
       multiplier = product([first, second]).length
     } else if (selectedType === 'Trifecta' && first && second && third) {
       multiplier = product([first, second, third]).length
@@ -149,18 +137,6 @@ function product(array, repeat) {
   }, [[]]);
 }
 
-  const intersection = (first, second, third, fourth) => {
-    if (!first || !second) return
-    if (!third && !fourth) {
-      return first.filter(horse => second.includes(horse)).length
-    } else if (!fourth) {
-      console.log(first.filter(horse => second.includes(horse)).filter(horse => third.includes(horse)))
-      return first.filter(horse => second.includes(horse)).filter(horse => third.includes(horse)).length
-    } else {
-      console.log('not ready')
-    }
-  }
-
   const amountOptions = [
     { value: 0.1, label: '$0.10' },
     { value: 0.2, label: '$0.20' },
@@ -186,6 +162,15 @@ function product(array, repeat) {
     { value: 'P6', label: 'Pick 6' },
   ]
 
+  const horseNumber = [
+    { value: 10, label: '10' },
+    { value: 12, label: '12' },
+    { value: 14, label: '14' },
+    { value: 16, label: '16' },
+    { value: 18, label: '18' },
+    { value: 20, label: '20' },
+  ]
+
   const handleAmountChange = (value) => {
     setSelectedAmount(value.value)
   }
@@ -194,53 +179,46 @@ function product(array, repeat) {
     setSelectedType(value.value)
   }
 
+  const handleHorsesChange = (value) => {
+    setEntries(value.value)
+  }
+
+  const displaySelectedHorses = () => {
+    const number = betTypes[selectedType]
+    const arr = []
+    let count = 1
+    while (count < number + 1) {
+      if (selectedNumbers[`${count}`]) arr.push(<div className="selections">{selectedNumbers[`${count}`].join(', ')}</div>)
+      else arr.push(<div className="selections">-</div>)
+      count++
+    }
+    console.log(arr)
+    return arr
+    // const numbers = []
+    // let count = 1
+    // while (count < 7) {
+    //   if (selectedNumbers[`${count}`]) {
+    //     numbers.push(selectedNumbers[`${count}`])
+    //   } else {
+    //     numbers.push([])
+    //   }
+    //   count++
+    // }
+
+    // console.log(numbers)
+    // return numbers.map((place) => place.join(', ')).join(' / ')
+  }
+
   return (
-    <>
+    <div className="Calculator">
       <div className="container">
-        {/* <div> */}
-          {/* <select
-            id="bet-amount"
-            className="select"
-            onChange={(e) => setSelectedAmount(e.target.value)}
-          >
-            <option value disabled="disabled" selected="selected" hidden>
-              Bet Amount
-            </option>
-            <option value={0.1}>$0.10</option>
-            <option value={0.2}>$0.20</option>
-            <option value={0.5}>$0.50</option>
-            <option value={1}>$1</option>
-            <option value={2}>$2</option>
-            <option value={5}>$5</option>
-            <option value={10}>$10</option>
-            <option value={15}>$15</option>
-            <option value={20}>$20</option>
-            <option value={50}>$50</option>
-            <option value={100}>$100</option>
-          </select> */}
+        <div className="dropdowns">
           <Select options={amountOptions} className="select" placeholder="Bet Amount" onChange={handleAmountChange}/>
-        {/* </div> */}
-        {/* <div className="select-options">
-          <select
-            id="bet-type"
-            className="select"
-            onChange={(e) => setSelectedType(e.target.value)}
-          >
-            <option value disabled="disabled" selected="selected" hidden>
-              Bet Type
-            </option>
-            <option value="Exacta">Exacta</option>
-            <option value="Trifecta">Trifecta</option>
-            <option value="Superfecta">Superfecta</option>
-            <option value="DailyDouble">Daily Double</option>
-            <option value="P3">Pick 3</option>
-            <option value="P4">Pick 4</option>
-            <option value="P5">Pick 5</option>
-            <option value="P6">Pick 6</option>
-          </select>
-        </div> */}
-        <Select options={betOptions} className="select" placeholder="Bet Type" onChange={handleTypeChange}/>
-        <div className="checkbox">
+          <Select options={betOptions} className="select" placeholder="Bet Type" onChange={handleTypeChange}/>
+          <Select options={horseNumber} className="select" placeholder="# of Horses" onChange={handleHorsesChange} />
+        </div>
+        {(singleRace.includes(selectedType)) && (
+          <div className="checkbox">
           <input
             type="checkbox"
             id="box"
@@ -250,13 +228,26 @@ function product(array, repeat) {
           />
           <label for="box">Box</label>
         </div>
+        )}
       </div>
 
-      {numberOfPlaces(12)}
+      {numberOfPlaces(entries)}
 
+      <div className="selected-horses">
+        {displaySelectedHorses().map((place, index) => {
+          return index + 1 === betTypes[selectedType] ? (
+            place
+          ) : (
+            <>
+            {place}
+            <div>{' / '}</div>
+            </>
+          )
+        })}
+      </div>
       <div className="cost-display">
         <span>{`Bet Cost: ${calculateBetCost()}`}</span>
       </div>
-    </>
+    </div>
   );
 };
