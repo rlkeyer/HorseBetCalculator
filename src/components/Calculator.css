@@ -1,7 +1,7 @@
 .Calculator {
   width: 80%;
   background-color: rgba(255, 255, 255, 0.8);
-  margin: 5rem auto;
+  margin: 0 auto;
   padding: 2rem;
   border-radius: 0.5rem;
 }
@@ -74,7 +74,7 @@ p {
 
 .square-number.is-selected .silks {
     /* box-shadow: 0 0 0.2rem blue; */
-    border-right: 4.5rem solid transparent;
+    border-right: 5rem solid transparent;
   }
 
 .places {
@@ -117,6 +117,7 @@ p {
 
   .square-number {
     margin-bottom: 0.3rem;
+    margin-right: 0.5rem;
   }
 }
 

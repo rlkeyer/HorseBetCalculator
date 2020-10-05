@@ -65,7 +65,7 @@ export const NumberTiles = (props) => {
                     }
                   }}
                 >
-                  <div className="silks" style={{borderTop: `${!numberSelected(item, place) ? '1rem' : '4.5rem'} solid ${silksColors[item].background}`}}></div>
+                  <div className="silks" style={{borderTop: `${!numberSelected(item, place) ? '1rem' : '5rem'} solid ${silksColors[item].background}`}}></div>
                   <p style={{color: `${!numberSelected(item, place) ? 'black' : silksColors[item].number}`}}>{item}</p>
                 </div>
               );
