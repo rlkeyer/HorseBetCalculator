@@ -234,7 +234,7 @@ function product(array, repeat) {
       {numberOfPlaces(entries)}
 
       <div className="selected-horses">
-        {displaySelectedHorses().map((place, index) => {
+        {!isBox ? displaySelectedHorses().map((place, index) => {
           return index + 1 === betTypes[selectedType] ? (
             place
           ) : (
@@ -243,7 +243,11 @@ function product(array, repeat) {
             <div>{' / '}</div>
             </>
           )
-        })}
+        }) : (
+            <>
+          {displaySelectedHorses()[0]}
+          </>
+        )}
       </div>
       <div className="cost-display">
         <span>{`Bet Cost: ${calculateBetCost()}`}</span>
